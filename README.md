@@ -1,0 +1,7 @@
+IT Ticketing Software is a common tool in IT Service Management (ITSM) used to track IT service requests and incidents. An IT Ticket is a record of an event that requires action from the IT department. Some of these incidents such as hardware replacement, software updates and fixes require a company to spend money to resolve the issue whilst other problems like simple user errors do not incur a cost.
+Our project aims to help companies forecast their expenditure on IT issues by building classification models that can be used to predict whether an event will incur a fee or not. Such a model would be useful to a company to accurately budget for future IT issues.
+We have 50 inputs for our models; these inputs come from the individual ticket records and are contextual information related to each incident. Such information includes – Ticket Priority (how critical is the issue), name of impacted application, users impacted by issue, name of support team that submitted the ticket, team member who fixed the problem and date when ticket was created, last updated & closed. The output of our models will be +1 or -1; +1 indicating that the ticket is predicted to cost the company money and -1 that the event will not incur a cost. A company may use these predictions on all tickets currently in progress to estimate the proportion of issues that will be payable. To predict these values we propose the following three models –
+
+i) Logistic Regression Classifier
+ii) MLP Neural Net Classifier
+iii)K-Nearest Neighbours

@@ -31,6 +31,8 @@ from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import chi2 ,SelectFpr
 
 
+
+
 #Function to choose the K value 
 #Will plot F1 score against K values using cross validation
 #Takes a range of K values, feature vector X and classification data y
@@ -58,14 +60,17 @@ def chooseKValue(k_range,X,y,weightType):
     plt.title("Knn Cross Validation Versus F1 Score")
     plt.show()
 
+
+
+
 #Function to rebalance training data
-#Sampling Strategy set to 0.99 to ensure the dummy classification picks the correct class
 def dataRebalance(Xtrain,ytrain):
     #############
 
+    #Print the old class distribution
     counter = Counter(ytrain)
     print(counter)
-    pipeline=SMOTE(sampling_strategy=0.99, k_neighbors=21)
+    pipeline=SMOTE(sampling_strategy="auto", k_neighbors=21)
 
     Xtrain, ytrain = pipeline.fit_resample(Xtrain, ytrain)
     # summarize the new class distribution
@@ -192,11 +197,16 @@ def main():
     #Plotting the ROC curve
     plt.rc('font', size=18); plt.rcParams['figure.constrained_layout.use'] = True
     xProbability=modelKnn.predict_proba(Xtest)
+    xProbability2=dummy.predict_proba(Xtest)
 
 
     #Plotting Values
     fpr, tpr, _ = roc_curve(ytest,xProbability[:, 1])
     plt.plot(fpr,tpr, label="modelKnn",c="b")
+
+
+    fpr, tpr, _ = roc_curve(ytest,xProbability2[:, 1])
+    plt.plot(fpr,tpr,label="Baseline",c="purple", alpha=0.5)
 
 
     #Plotting details
